@@ -1,5 +1,7 @@
 FROM ubuntu 
 
+LABEL maintainer="mail@gdietz.de"
+
 RUN apt-get -y update \
-  && apt-get install -y vim wget net-tools telnet dnsutils iproute nmap tcpdump links
+  && apt-get install -y less vim wget curl net-tools telnet dnsutils iproute nmap tcpdump links
   
