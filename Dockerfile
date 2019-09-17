@@ -10,6 +10,7 @@ RUN apt-get update && \
       iputils-ping \
       wget \
       curl \
+      httpie \
       net-tools \
       telnet \
       dnsutils \
