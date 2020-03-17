@@ -18,7 +18,8 @@ RUN apt-get update && \
       iproute2 \
       nmap \
       tcpdump \
-      links && \
+      links \
+      ldap-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
