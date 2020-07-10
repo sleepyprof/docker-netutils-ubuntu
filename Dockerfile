@@ -2,6 +2,8 @@ FROM ubuntu
 
 LABEL maintainer="mail@gdietz.de"
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get install -y \
       less \
@@ -23,8 +25,7 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-RUN npm install -g wscat && \
-    npm cache clean
+RUN npm install -g wscat
 
 ENV WEBSOCAT_VERSION 1.5.0_ssl1.1
 ENV WEBSOCAT_SHA1 495e326e237db63321a001cc25bdeb156b75c345
