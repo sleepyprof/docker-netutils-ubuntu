@@ -2,7 +2,7 @@ FROM ubuntu
 
 LABEL maintainer="mail@gdietz.de"
 
-ENV DEBIAN_FRONTEND=noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y \
@@ -27,15 +27,12 @@ RUN apt-get update && \
 
 RUN npm install -g wscat
 
-ENV WEBSOCAT_BASE_VERSION v1.7.0
-ENV WEBSOCAT_VERSION 1.7.0_ssl1.1
-ENV WEBSOCAT_SHA1 0cbfd5d93a32a0aa84d776b7572ab1d8084ffed2
+ENV WEBSOCAT_BASE_VERSION v1.9.0
+ENV WEBSOCAT_SHA1 df105ab3cdd477acb6aac43fb564c743eb42d868
 
 RUN cd $HOME && \
-    curl -LO https://github.com/vi/websocat/releases/download/${WEBSOCAT_BASE_VERSION}/websocat_${WEBSOCAT_VERSION}_amd64.deb && \
-    sha1sum websocat_${WEBSOCAT_VERSION}_amd64.deb | grep $WEBSOCAT_SHA1 && \
-    apt-get install -y $HOME/websocat_${WEBSOCAT_VERSION}_amd64.deb && \
-    rm websocat_${WEBSOCAT_VERSION}_amd64.deb && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    curl -LO https://github.com/vi/websocat/releases/download/${WEBSOCAT_BASE_VERSION}/websocat_linux64 && \
+    sha1sum websocat_linux64 | grep $WEBSOCAT_SHA1 && \
+    chmod 755 websocat_linux64 && \
+    mv websocat_linux64 /usr/bin/websocat
 
