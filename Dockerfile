@@ -27,12 +27,13 @@ RUN apt-get update && \
 
 RUN npm install -g wscat
 
-ENV WEBSOCAT_BASE_VERSION v1.9.0
-ENV WEBSOCAT_SHA1 df105ab3cdd477acb6aac43fb564c743eb42d868
+ENV WEBSOCAT_BASE_VERSION=v1.13.0
+ENV WEBSOCAT_SHA1=44b69e35bf0adc361768ad3bb237f220c3a9be01
 
 RUN cd $HOME && \
-    curl -LO https://github.com/vi/websocat/releases/download/${WEBSOCAT_BASE_VERSION}/websocat_linux64 && \
-    sha1sum websocat_linux64 | grep $WEBSOCAT_SHA1 && \
-    chmod 755 websocat_linux64 && \
-    mv websocat_linux64 /usr/bin/websocat
+    curl -LO https://github.com/vi/websocat/releases/download/${WEBSOCAT_BASE_VERSION}/websocat.x86_64-unknown-linux-musl && \
+    mv websocat.x86_64-unknown-linux-musl websocat && \
+    sha1sum websocat | grep $WEBSOCAT_SHA1 && \
+    chmod 755 websocat && \
+    mv websocat /usr/bin/
 
